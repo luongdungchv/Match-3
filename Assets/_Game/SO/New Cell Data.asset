@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c731304a2c5cc4fa9c59b2e5eec892, type: 3}
+  m_Name: New Cell Data
+  m_EditorClassIdentifier: 
+  cellSpriteList:
+  - {fileID: 21300000, guid: ad0a03b20c812e64592bb45e2fb758ca, type: 3}
+  - {fileID: 21300000, guid: b8d53b0f05348ed4b9a580e5304b8476, type: 3}
+  - {fileID: 21300000, guid: 5ddf7dddab33ff54a88c3e3b8e479e81, type: 3}
+  - {fileID: 21300000, guid: e7b6840f9762b4645b583f8c1c013773, type: 3}
+  - {fileID: 21300000, guid: 75e4b5f0038ecaf499c26b91a5509f12, type: 3}
+  - {fileID: 21300000, guid: 252b718827dedef45852954688f5a285, type: 3}
