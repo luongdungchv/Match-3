@@ -185,7 +185,10 @@ public class BoardView : SerializedMonoBehaviour
         }
         else
         {
-            if(!model.DetectMove()) this.GenerateLevel();
+            if(!model.DetectMove()){
+                this.GenerateLevel();
+                this.RecheckBoard();
+            }
         }
     }
     public void GameStart()
