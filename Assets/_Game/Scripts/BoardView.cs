@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using DG.Tweening;
 using DL.Utils;
+using TMPro;
 
 public class BoardView : SerializedMonoBehaviour
 {
@@ -11,6 +12,7 @@ public class BoardView : SerializedMonoBehaviour
     [SerializeField] private BoardNodel model;
     [SerializeField] private Queue<BoardCell> cellPool;
     [SerializeField] private CellDataSO cellData;
+    [SerializeField] private TMP_Text notiText;
     [SerializeField] private float switchDuration, disappearDuration, moveDuration;
 
     [SerializeField] private bool isPlayingAnimation;
@@ -21,7 +23,6 @@ public class BoardView : SerializedMonoBehaviour
 
     private void Awake()
     {
-        //gap = Vector3.Distance(boardCells[0, 1].transform.position, boardCells[0, 0].transform.position);
         this.GenerateLevel();
     }
 
@@ -90,7 +91,7 @@ public class BoardView : SerializedMonoBehaviour
                 {
                     model.RemoveCells(result);
                     var movement = model.GetMovementMatrix(out int[] removedPerColumns);
-                    var fillsPerColumns = model.GetRandomFillValues(removedPerColumns, 5);
+                    var fillsPerColumns = model.GetRandomFillValues(removedPerColumns, cellData.MaxCellValue);
                     MoveAndFillCell(movement, fillsPerColumns);
                 });
                 ScoreManager.instance.AddScore(20 * result.Count);
@@ -176,7 +177,7 @@ public class BoardView : SerializedMonoBehaviour
             {
                 model.RemoveCells(result);
                 var movement = model.GetMovementMatrix(out int[] removedPerColumns);
-                var fillsPerColumns = model.GetRandomFillValues(removedPerColumns, 5);
+                var fillsPerColumns = model.GetRandomFillValues(removedPerColumns, cellData.MaxCellValue);
                 MoveAndFillCell(movement, fillsPerColumns);
             });
             ScoreManager.instance.AddScore(20 * result.Count);
@@ -185,7 +186,7 @@ public class BoardView : SerializedMonoBehaviour
         }
         else
         {
-            if(!model.DetectMove()){
+             if(!model.DetectMove()){
                 this.GenerateLevel();
                 this.RecheckBoard();
             }
@@ -194,5 +195,38 @@ public class BoardView : SerializedMonoBehaviour
     public void GameStart()
     {
         DL.Utils.CoroutineUtils.Invoke(this, RecheckBoard, 0.4f);
+    }
+    private void PlayResetAnimation(TweenCallback onComplete)
+    {
+        this.isPlayingAnimation = true;
+        var sequence = DOTween.Sequence();
+        this.notiText.transform.localScale = new Vector3(1, 0, 1);
+        sequence.Append(notiText.transform.DOScale(Vector3.one, this.moveDuration * 2));
+        sequence.Append(notiText.transform.DOScale(new Vector3(1, 0, 1), moveDuration * 2).SetDelay(moveDuration * 1.5f));
+        sequence.OnComplete(() =>
+        {
+            this.GenerateLevel();
+            var secondSequence = DOTween.Sequence();
+            this.boardCells.Loop((item, x, y) =>
+            {
+                var worldPos = new Vector2(x, y) * gap;
+                var startPos = worldPos + Vector2.up * gap * 5;
+                item.transform.position = startPos;
+                var tween = item.transform.DOMove(worldPos, moveDuration);
+                if (x == 0 && y == 0) secondSequence.Append(tween);
+                else secondSequence.Join(tween);
+            });
+            secondSequence.OnComplete(() =>
+            {
+                this.isPlayingAnimation = false;
+                onComplete?.Invoke();
+            });
+        });
+    }
+    [Sirenix.OdinInspector.Button]
+    private void Test()
+    {
+        this.GenerateLevel();
+        this.PlayResetAnimation(this.RecheckBoard);
     }
 }

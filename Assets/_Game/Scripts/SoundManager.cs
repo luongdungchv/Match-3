@@ -13,15 +13,10 @@ public class SoundManager : SerializedMonoBehaviour
 
     private void Awake() {
         instance = this;
-        this.PlayBGM();
     }
 
     public void PlayOneShot(SFX sfx){
         soundPlayer.PlayOneShot(audioList[sfx]);
-    }
-    public void PlayBGM(){
-        soundPlayer.clip = bgm;
-        soundPlayer.Play();
     }
 }
 public enum SFX{

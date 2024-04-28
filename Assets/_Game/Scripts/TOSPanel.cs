@@ -9,23 +9,29 @@ public class TOSPanel : MonoBehaviour
     [SerializeField] private string url;
     [SerializeField] private Button tosBtn, acceptBtn;
 
-    private void Awake() {
+    private void Awake()
+    {
         tosBtn.onClick.AddListener(OpenURL);
         acceptBtn.onClick.AddListener(Accept);
     }
 
-    public void Show(){
+    public void Show()
+    {
         this.gameObject.SetActive(true);
     }
-    public void Hide(){
+    public void Hide()
+    {
         this.gameObject.SetActive(false);
     }
-    public void Accept(){
+    public void Accept()
+    {
         this.Hide();
-         SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+        PlayerPrefs.SetInt("TOS", 1);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
     }
 
-    public void OpenURL(){
+    public void OpenURL()
+    {
         Application.OpenURL(url);
     }
 }

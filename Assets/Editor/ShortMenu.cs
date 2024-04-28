@@ -6,24 +6,24 @@ using UnityEngine;
 
 public class ShortMenu: Editor
 {
-[MenuItem("Open Scenes/Test1")]//0
+[MenuItem("Open Scenes/Game")]//0
     public static void Option1(){
         string scenePath = 
-        "Assets/Scenes/Test1.unity";//s0
+        "Assets/_Game/Scenes/Game.unity";//s0
         EditorSceneManager.SaveOpenScenes();
         EditorSceneManager.OpenScene(scenePath);
     }
-[MenuItem("Open Scenes/SampleScene")]//1
+[MenuItem("Open Scenes/MainMenu")]//1
     public static void Option2(){
         string scenePath = 
-        "Assets/Scenes/SampleScene.unity";//s1
+        "Assets/_Game/Scenes/MainMenu.unity";//s1
         EditorSceneManager.SaveOpenScenes();
         EditorSceneManager.OpenScene(scenePath);
     }
-[MenuItem("Open Scenes/Test2")]//2
+[MenuItem("Open Scenes/Master")]//2
     public static void Option3(){
         string scenePath = 
-        "Assets/Scenes/Test2.unity";//s2
+        "Assets/_Game/Scenes/Master.unity";//s2
         EditorSceneManager.SaveOpenScenes();
         EditorSceneManager.OpenScene(scenePath);
     }
