@@ -27,7 +27,7 @@ public class TOSPanel : MonoBehaviour
     {
         this.Hide();
         PlayerPrefs.SetInt("TOS", 1);
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OpenURL()

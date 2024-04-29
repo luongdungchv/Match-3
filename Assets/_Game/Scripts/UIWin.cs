@@ -27,13 +27,13 @@ public class UIWin : MonoBehaviour
     private void ReplayClick(){
         SoundManager.instance.PlayOneShot(SFX.Btn_Click);
         SceneManager.UnloadSceneAsync("Game").completed += (e) => {
-            SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Game");
         };
     }
     private void QuitClick(){
         SoundManager.instance.PlayOneShot(SFX.Btn_Click);
         SceneManager.UnloadSceneAsync("Game").completed += (e) => {
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
+            SceneManager.LoadScene("MainMenu");
         };
     }
 }

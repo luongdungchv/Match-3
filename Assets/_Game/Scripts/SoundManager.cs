@@ -9,14 +9,19 @@ public class SoundManager : SerializedMonoBehaviour
     [SerializeField] private AudioSource soundPlayer;
     [SerializeField] private Dictionary<SFX, AudioClip> audioList;
 
-    [SerializeField] private AudioClip bgm;
 
     private void Awake() {
+        if(instance != null) Destroy(this.gameObject);
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void PlayOneShot(SFX sfx){
         soundPlayer.PlayOneShot(audioList[sfx]);
+    }
+    [Sirenix.OdinInspector.Button]
+    private void TestSound(SFX sfx){
+        PlayOneShot(sfx);
     }
 }
 public enum SFX{

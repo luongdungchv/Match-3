@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public void StartGame(){
+    public void StartGame()
+    {
         SoundManager.instance.PlayOneShot(SFX.Btn_Click);
-        SceneManager.UnloadSceneAsync("MainMenu").completed += (e) => {
-            SceneManager.LoadScene("Game", LoadSceneMode.Additive);
-        };
-        
+
+        SceneManager.LoadScene("Game");
+
     }
 }

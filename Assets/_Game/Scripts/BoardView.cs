@@ -17,7 +17,6 @@ public class BoardView : SerializedMonoBehaviour
 
     [SerializeField] private bool isPlayingAnimation;
     [SerializeField] private float gap;
-    [SerializeField] private FigureManager figureManager;
 
     public bool IsPlayingAnimation => this.isPlayingAnimation;
 
@@ -97,7 +96,6 @@ public class BoardView : SerializedMonoBehaviour
                 ScoreManager.instance.AddScore(20 * result.Count);
 
                 SoundManager.instance.PlayOneShot(SFX.Score);
-                figureManager.PlayBravoAnimation();
             }
             else
             {
@@ -129,6 +127,7 @@ public class BoardView : SerializedMonoBehaviour
             isPlayingAnimation = true;
 
         });
+        Debug.Log(fillsPerColumns.Length);
         for (int i = 0; i < fillsPerColumns.Length; i++)
         {
             var fill = fillsPerColumns[i];
@@ -145,7 +144,6 @@ public class BoardView : SerializedMonoBehaviour
                 sequence.Join(cell.transform.DOMove(cell.transform.position - (Vector3.up * fill.Count * gap), moveDuration));
                 boardCells[i, model.boardHeight - j] = cell;
                 cell.SetCoordinate(i, model.boardHeight - j);
-                //Debug.Log((i, j, fillVal, y));
             }
         }
         sequence.OnComplete(() =>
@@ -182,13 +180,11 @@ public class BoardView : SerializedMonoBehaviour
             });
             ScoreManager.instance.AddScore(20 * result.Count);
             SoundManager.instance.PlayOneShot(SFX.Score);
-            figureManager.PlayBravoAnimation();
         }
         else
         {
              if(!model.DetectMove()){
-                this.GenerateLevel();
-                this.RecheckBoard();
+                this.PlayResetAnimation(this.RecheckBoard);
             }
         }
     }
@@ -226,7 +222,7 @@ public class BoardView : SerializedMonoBehaviour
     [Sirenix.OdinInspector.Button]
     private void Test()
     {
-        this.GenerateLevel();
+        //this.GenerateLevel();
         this.PlayResetAnimation(this.RecheckBoard);
     }
 }
