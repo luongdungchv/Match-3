@@ -137,14 +137,17 @@ public class BoardNodel : SerializedMonoBehaviour
                 if(val1 == val2 && val1 != val){
                     if(x -1 >= 0 && mainBoard[x - 1, y] == val1) return true;
                     if(x + 1 < boardWidth && mainBoard[x + 1, y] == val1) return true;
+                    if(y - 1 >= 0 && mainBoard[x, y - 1] == val1) return true;
                 }
                 if(val == val2 && val1 != val){
                     if(x -1 >= 0 && mainBoard[x - 1, y + 1] == val) return true;
                     if(x + 1 < boardWidth && mainBoard[x + 1, y + 1] == val) return true;
+                    if(y + 3 < boardHeight && mainBoard[x, y + 3] == val) return true;
                 }
                 if(val1 == val && val1 != val2){
                     if(x -1 >= 0 && mainBoard[x - 1, y + 2] == val1) return true;
                     if(x + 1 < boardWidth && mainBoard[x + 1, y + 2] == val1) return true;
+                    if(y + 3 < boardHeight && mainBoard[x, y + 3] == val) return true;
                 }
             }
         }
@@ -157,14 +160,17 @@ public class BoardNodel : SerializedMonoBehaviour
                 if(val1 == val2 && val1 != val){
                     if(y -1 >= 0 && mainBoard[x, y - 1] == val1) return true;
                     if(y + 1 < boardHeight && mainBoard[x, y + 1] == val1) return true;
+                    if(x - 1 >= 0 && mainBoard[x - 1, y] == val1) return true;
                 }
                 if(val == val2 && val1 != val){
                     if(y -1 >= 0 && mainBoard[x + 1, y - 1] == val) return true;
                     if(y + 1 < boardHeight && mainBoard[x + 1, y + 1] == val) return true;
+                    if(x + 3 < boardWidth && mainBoard[x + 3, y] == val) return true;
                 }
                 if(val1 == val && val1 != val2){
                     if(y -1 >= 0 && mainBoard[x + 2, y - 1] == val1) return true;
                     if(y + 1 < boardHeight && mainBoard[x + 2, y + 1] == val1) return true;
+                    if(x + 3 < boardWidth && mainBoard[x + 3, y] == val) return true;
                 }
                 
             }

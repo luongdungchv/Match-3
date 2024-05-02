@@ -16,6 +16,7 @@ public class BoardCell : SerializedMonoBehaviour
     public int Value => this.value;
 
     public (int, int) Coordinate => this.coordinate;
+    public Vector2Int CoordinateVector => new Vector2Int(this.coordinate.Item1, this.coordinate.Item2);
     private void Awake(){
         this.originalScale = this.transform.localScale;
     }
@@ -37,31 +38,31 @@ public class BoardCell : SerializedMonoBehaviour
     public void SetBoardView(BoardView boardView){
         this.boardView = boardView;
     }
-    private Vector3 lastMousePos;
-    private void OnMouseDrag() {
-        if(lastMousePos != Vector3.zero){
-            var delta = Input.mousePosition - lastMousePos;
-            if(delta.magnitude > 4){
-                if(Mathf.Abs(delta.x) > Mathf.Abs(delta.y)){
-                    var (offsetX, offsetY) = (delta.x > 0 ? 1 : -1, 0);
-                    var (x, y) = coordinate;
-                    var  (targetX, targetY) = (x + offsetX, y + offsetY);
-                    boardView.SwitchCells((x, y), (targetX, targetY));
-                }
-                else{
-                    var (offsetX, offsetY) = (0, delta.y > 0 ? 1 : -1);
-                    var (x, y) = coordinate;
-                    var  (targetX, targetY) = (x + offsetX, y + offsetY);
-                    boardView.SwitchCells((x, y), (targetX, targetY));
-                }
-            }
-        }
-        lastMousePos = Input.mousePosition;
-    }
-    private void OnMouseUp() {
-        lastMousePos = Vector3.zero;
-    }
-    private void OnMouseExit() {
-        lastMousePos = Vector3.zero;
-    }
+    // private Vector3 lastMousePos;
+    // private void OnMouseDrag() {
+    //     if(lastMousePos != Vector3.zero){
+    //         var delta = Input.mousePosition - lastMousePos;
+    //         if(delta.magnitude > 4){
+    //             if(Mathf.Abs(delta.x) > Mathf.Abs(delta.y)){
+    //                 var (offsetX, offsetY) = (delta.x > 0 ? 1 : -1, 0);
+    //                 var (x, y) = coordinate;
+    //                 var  (targetX, targetY) = (x + offsetX, y + offsetY);
+    //                 boardView.SwitchCells((x, y), (targetX, targetY));
+    //             }
+    //             else{
+    //                 var (offsetX, offsetY) = (0, delta.y > 0 ? 1 : -1);
+    //                 var (x, y) = coordinate;
+    //                 var  (targetX, targetY) = (x + offsetX, y + offsetY);
+    //                 boardView.SwitchCells((x, y), (targetX, targetY));
+    //             }
+    //         }
+    //     }
+    //     lastMousePos = Input.mousePosition;
+    // }
+    // private void OnMouseUp() {
+    //     lastMousePos = Vector3.zero;
+    // }
+    // private void OnMouseExit() {
+    //     lastMousePos = Vector3.zero;
+    // }
 }

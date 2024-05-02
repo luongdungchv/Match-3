@@ -11,7 +11,10 @@ public class SoundManager : SerializedMonoBehaviour
 
 
     private void Awake() {
-        if(instance != null) Destroy(this.gameObject);
+        if(instance != null){
+            Destroy(this.gameObject);
+            return;
+        }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }

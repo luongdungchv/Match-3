@@ -127,7 +127,6 @@ public class BoardView : SerializedMonoBehaviour
             isPlayingAnimation = true;
 
         });
-        Debug.Log(fillsPerColumns.Length);
         for (int i = 0; i < fillsPerColumns.Length; i++)
         {
             var fill = fillsPerColumns[i];
