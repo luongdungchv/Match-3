@@ -26,6 +26,7 @@ public class TOSPanel : MonoBehaviour
     public void Accept()
     {
         this.Hide();
+        SoundManager.instance.PlayOneShot(SFX.Btn_Click);
         PlayerPrefs.SetInt("TOS", 1);
         SceneManager.LoadScene("MainMenu");
     }

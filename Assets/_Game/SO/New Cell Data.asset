@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: New Cell Data
   m_EditorClassIdentifier: 
   cellSpriteList:
-  - {fileID: 21300000, guid: ad0a03b20c812e64592bb45e2fb758ca, type: 3}
-  - {fileID: 21300000, guid: b8d53b0f05348ed4b9a580e5304b8476, type: 3}
-  - {fileID: 21300000, guid: 5ddf7dddab33ff54a88c3e3b8e479e81, type: 3}
-  - {fileID: 21300000, guid: e7b6840f9762b4645b583f8c1c013773, type: 3}
   - {fileID: 21300000, guid: 75e4b5f0038ecaf499c26b91a5509f12, type: 3}
+  - {fileID: 21300000, guid: d0f44392a05d07747a551f79d33e19f3, type: 3}
+  - {fileID: 21300000, guid: 28ab2cc4628bca1498d19b329bbb34cc, type: 3}
+  - {fileID: 21300000, guid: dedc670064af0404fb3b46115cf28c1c, type: 3}
+  - {fileID: 21300000, guid: 516a6d0c7cd737b4698f3e9f60d29ecb, type: 3}

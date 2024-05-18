@@ -93,7 +93,7 @@ public class BoardView : SerializedMonoBehaviour
                     var fillsPerColumns = model.GetRandomFillValues(removedPerColumns, cellData.MaxCellValue);
                     MoveAndFillCell(movement, fillsPerColumns);
                 });
-                ScoreManager.instance.AddScore(20 * result.Count);
+                ScoreManager.instance.AddScore(10 * result.Count);
 
                 SoundManager.instance.PlayOneShot(SFX.Score);
             }
@@ -177,12 +177,14 @@ public class BoardView : SerializedMonoBehaviour
                 var fillsPerColumns = model.GetRandomFillValues(removedPerColumns, cellData.MaxCellValue);
                 MoveAndFillCell(movement, fillsPerColumns);
             });
-            ScoreManager.instance.AddScore(20 * result.Count);
+            ScoreManager.instance.AddScore(10 * result.Count);
             SoundManager.instance.PlayOneShot(SFX.Score);
         }
         else
         {
-             if(!model.DetectMove()){
+            if(!isPlayingAnimation) ScoreManager.instance.CheckAndPlayCoinAnim();
+            if (!model.DetectMove())
+            {
                 this.PlayResetAnimation(this.RecheckBoard);
             }
         }
